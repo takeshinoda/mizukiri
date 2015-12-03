@@ -1,16 +1,15 @@
+import 'babel-polyfill'
 import gulp    from 'gulp'
 import babel   from 'gulp-babel'
 import mocha   from 'gulp-mocha'
 import runSequence from 'run-sequence'
 
-const SOURCES    = 'src/**/*.js'
-const TEST_FILES = ['test/**/*.js', '!test/fixtures/*.js']
+const SOURCES    = ['src/**/*.js']
+const TEST_FILES = ['test/**/*_test.js', '!test/fixtures/*.js']
 
-gulp.task('test', () => {
+gulp.task('test', ['compile'], () => {
   return gulp.src(TEST_FILES)
-             .pipe(babel())
-             .pipe(gulp.dest('test_dist'))
-             .pipe(mocha({ reporter: 'nyan' }))
+             .pipe(mocha({ timeout: 20000, reporter: 'nyan' }))
 })
 
 gulp.task('compile', () => {
@@ -20,7 +19,7 @@ gulp.task('compile', () => {
 })
 
 gulp.task('watch', (done) => {
-  gulp.watch(SOURCES, ['default'])
+  gulp.watch(SOURCES.concat(TEST_FILES), ['default'])
       .on('end', done)
 })
 

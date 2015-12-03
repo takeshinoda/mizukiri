@@ -1,2 +1,2 @@
-module.exports = require('./lib/mizukiri');
+module.exports = require('./lib/Mizukiri');
 

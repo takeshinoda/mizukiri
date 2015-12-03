@@ -2,5 +2,7 @@ node_modules
 npm-debug.log*
 lib/*
 !lib/.gitkeep
+!lib/lambda_template
 test_dist
+tmp
 
