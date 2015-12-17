@@ -48,6 +48,7 @@
     "gulp-mocha": "^2.2.0",
     "gulp-util": "^3.0.7",
     "mocha": "^2.3.4",
+    "power-assert": "^1.2.0",
     "run-sequence": "^1.1.5",
     "sinon": "^1.17.2"
   }
