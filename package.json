@@ -13,6 +13,21 @@
       "babel-plugin-espower"
     ]
   },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/takeshinoda/mizukiri"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "deploy"
+  ],
+  "author": "Takeshi SHINODA",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/takeshinoda/mizukiri/issues"
+  },
   "dependencies": {
     "archiver": "^0.20.0",
     "aws-sdk": "^2.2.23",
