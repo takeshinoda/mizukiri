@@ -1,4 +1,5 @@
 import 'babel-polyfill'
+import child_process from 'child_process'
 import gulp    from 'gulp'
 import babel   from 'gulp-babel'
 import mocha   from 'gulp-mocha'
@@ -22,6 +23,10 @@ gulp.task('watch', (done) => {
   gulp.watch(SOURCES.concat(TEST_FILES), ['default'])
       .on('end', done)
 })
+
+gulp.task('publish', ['compile'], (done) => {
+  child_process.spawn('npm', ['publish'], { stdio: 'inherit' }).on('close', done);
+});
 
 gulp.task('default', (done) => runSequence('compile', 'test', done))
 
