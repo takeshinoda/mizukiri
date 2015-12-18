@@ -1,6 +1,6 @@
 {
   "name": "mizukiri",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Mizukirize JS function to AWS Lambda.",
   "scripts": {
     "test": "gulp test"
