@@ -21,7 +21,7 @@ export default class LambdaCodeGenerator {
   }
 
   loadTemplate() {
-    return fs.readFileSync('./lib/lambda_template/index.js.ejs').toString()
+    return fs.readFileSync(`${__dirname}/../lib/lambda_template/index.js.ejs`).toString()
   }
 
   serializeLambda() {
