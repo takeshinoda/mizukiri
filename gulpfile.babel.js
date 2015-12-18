@@ -10,7 +10,8 @@ const TEST_FILES = ['test/**/*_test.js', '!test/fixtures/*.js']
 
 gulp.task('test', ['compile'], () => {
   return gulp.src(TEST_FILES)
-             .pipe(mocha({ timeout: 25000, reporter: 'nyan' }))
+             //.pipe(mocha({ timeout: 25000, reporter: 'nyan' }))
+             .pipe(mocha({ timeout: 25000, reporter: 'dot' }))
 })
 
 gulp.task('compile', () => {

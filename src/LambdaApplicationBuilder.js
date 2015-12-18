@@ -1,7 +1,7 @@
 import fs  from 'fs'
 import del from 'del'
-import child_process from 'child_process'
 
+import npm from 'npm'
 import Promise   from 'bluebird'
 import serialize from 'node-serialize'
 
@@ -34,19 +34,14 @@ export default class LambdaApplicationBuilder {
                     this.lambdaCodeGennerator.serializeLambda())
   }
 
-  installPackages(done, err) {
-    child_process
-      .exec('npm i',
-            { cwd: this.appPath() },
-            (error, stdout, stderr) => {
-              if (error !== null) {
-                console.log('exec error: ' + error)
-                err(error)
-              }
-              else {
-                done(this)
-              }
-            })
+  installPackages(done, error) {
+    npm.load({ production: true, level: 'error' }, (err) => {
+      if (err) { return error(err) }
+      npm.commands.install(this.appPath(), [], (_err, data) => {
+        if (_err) { error(_err) }
+        else      { done(data) }
+      })
+    })
   }
 
   build() {
