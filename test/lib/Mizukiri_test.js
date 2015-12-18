@@ -8,7 +8,7 @@ if (!process.env.TEST_ROLE) {
 }
 
 describe('Mizukiri', () => {
-  beforeEach(() => del.sync('./tmp/test-func*'))
+  beforeEach(() => del.sync('/tmp/test-func*', { force: true }))
 
   const mizukiri = () => {
     return new Mizukiri({ 'lodash': '3.10.1' }, 
@@ -66,15 +66,15 @@ describe('Mizukiri', () => {
              { name: 'test-func-8', requires: { lodash: 'lodash' } })
       .buildChainApplications()
       .then(() => {
-        assert(fs.existsSync('./tmp/test-func-6/package.json'))
-        assert(fs.existsSync('./tmp/test-func-6/index.js'))
-        assert(fs.existsSync('./tmp/test-func-6/node_modules'))
-        assert(fs.existsSync('./tmp/test-func-7/package.json'))
-        assert(fs.existsSync('./tmp/test-func-7/index.js'))
-        assert(fs.existsSync('./tmp/test-func-7/node_modules'))
-        assert(fs.existsSync('./tmp/test-func-8/package.json'))
-        assert(fs.existsSync('./tmp/test-func-8/index.js'))
-        assert(fs.existsSync('./tmp/test-func-8/node_modules'))
+        assert(fs.existsSync('/tmp/test-func-6/package.json'))
+        assert(fs.existsSync('/tmp/test-func-6/index.js'))
+        assert(fs.existsSync('/tmp/test-func-6/node_modules'))
+        assert(fs.existsSync('/tmp/test-func-7/package.json'))
+        assert(fs.existsSync('/tmp/test-func-7/index.js'))
+        assert(fs.existsSync('/tmp/test-func-7/node_modules'))
+        assert(fs.existsSync('/tmp/test-func-8/package.json'))
+        assert(fs.existsSync('/tmp/test-func-8/index.js'))
+        assert(fs.existsSync('/tmp/test-func-8/node_modules'))
         done()
       })
       .catch(done)

@@ -18,10 +18,10 @@ describe('LambdaApplicationBuilder', () => {
   it('constructor', () => assert(builder() !== null))
 
   it('generateCodeFiles', () => {
-    del.sync('./tmp/test-func*')
+    del.sync('/tmp/test-func*', { force: true })
     builder().generateCodeFiles()
-    assert(fs.existsSync('./tmp/test-func-0/package.json'))
-    assert(fs.existsSync('./tmp/test-func-0/index.js'))
+    assert(fs.existsSync('/tmp/test-func-0/package.json'))
+    assert(fs.existsSync('/tmp/test-func-0/index.js'))
   })
 })
 

@@ -15,7 +15,7 @@ if (!process.env.TEST_ROLE) {
 describe('Deployer', () => {
   const dep = () => {
     return new Deployer(
-      './tmp/test-func-21', 
+      '/tmp/test-func-21', 
       { lambdaName: 'test-func-21',
         options: {
           lambdaConfig: {
@@ -27,7 +27,7 @@ describe('Deployer', () => {
   }
 
   beforeEach((done) => {
-    del.sync('./tmp/test-func*')
+    del.sync('/tmp/test-func*', { force: true })
     new Promise((_done, _err) => {
       const lambda = new aws.Lambda({ region: 'us-west-20' })
       lambda.deleteFunction({ FunctionName: 'test-func-21' }, (e, data) => _done())
@@ -49,7 +49,7 @@ describe('Deployer', () => {
     dep()
       .writeZipFile()
       .then(() => {
-        assert(fs.existsSync('./tmp/test-func-21.zip'))
+        assert(fs.existsSync('/tmp/test-func-21.zip'))
         done()
       })
       .catch(e => done(e))
@@ -59,7 +59,7 @@ describe('Deployer', () => {
     dep()
       .deploy()
       .then(() => { 
-        assert(fs.existsSync('./tmp/test-func-21.zip'))
+        assert(fs.existsSync('/tmp/test-func-21.zip'))
         const lambda = new aws.Lambda({ region: 'us-west-2' })
         lambda 
           .listFunctions({}, (err, data) => {

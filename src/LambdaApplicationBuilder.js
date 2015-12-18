@@ -37,7 +37,7 @@ export default class LambdaApplicationBuilder {
   installPackages(done, err) {
     child_process
       .exec('npm i',
-            { cwd: `${process.cwd()}/${this.appPath()}` },
+            { cwd: this.appPath() },
             (error, stdout, stderr) => {
               if (error !== null) {
                 console.log('exec error: ' + error)
@@ -47,10 +47,6 @@ export default class LambdaApplicationBuilder {
                 done(this)
               }
             })
-  }
-
-  pwd() {
-    return process.cwd()
   }
 
   build() {
@@ -69,12 +65,11 @@ export default class LambdaApplicationBuilder {
   }
 
   makeApplicationDir() {
-    if (!fs.existsSync('./tmp')) { fs.mkdirSync('./tmp') }
     fs.mkdirSync(this.appPath())
   }
 
   static genAppPath(lambdaName) {
-    return `./tmp/${lambdaName}`
+    return `/tmp/${lambdaName}`
   }
 
   appPath() {

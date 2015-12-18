@@ -13,7 +13,7 @@ export default class Deployer {
   }
 
   get zipPath() {
-    return `./tmp/${this.lambdaParams.lambdaName}.zip`
+    return `/tmp/${this.lambdaParams.lambdaName}.zip`
   }
 
   lambdaConfig(override = {}) {
@@ -33,7 +33,6 @@ export default class Deployer {
   }
 
   writeZipFile() {
-    if (!fs.existsSync('./tmp')) { fs.mkdirSync('./tmp') }
     return new Promise((done, err) => {
       const archive = archiver('zip', {})
       const fd = fs.createWriteStream(this.zipPath)
